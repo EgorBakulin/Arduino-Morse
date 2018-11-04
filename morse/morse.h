@@ -1,21 +1,27 @@
 class morse
 {
+
   private:
     short int pin;                      // pin used us a signal
+    int signal_delay = 200;
+    int dash_delay = 600;
+
+  private:
     void dash()
     {
       digitalWrite( pin, HIGH );
-      delay( 600 );
+      delay( dash_delay );
       digitalWrite( pin, LOW );
-      delay ( 200 );
+      delay ( signal_delay );
     }
-  
+
+  private:
     void dot()
     {
       digitalWrite ( pin, HIGH );
-      delay ( 200 );
+      delay ( signal_delay );
       digitalWrite ( pin, LOW );
-      delay ( 200 );
+      delay ( signal_delay );
     }
 
   public:
@@ -24,6 +30,19 @@ class morse
       pin =  begin_pin;
       pinMode ( pin, OUTPUT );
     }
+    
+  public:
+    void set_signal_delay(int delay)
+    {
+            signal_delay = delay;
+    }
+
+  public:
+    void set_dash_delay(int delay)
+    {
+            dash_delay = delay;
+    }
+
   public:
     void out_char ( char symbol )
     {
